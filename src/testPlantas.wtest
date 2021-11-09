@@ -1,0 +1,41 @@
+import plantas.*
+
+describe "Test de plantas"{
+	
+	const plantaMenta1 = new Menta(anioObtencionSemilla = 2004, altura = 1)
+	const plantaMenta2 = new Menta(anioObtencionSemilla = 2004, altura = 0.3)
+	const plantaSoja = new Soja(anioObtencionSemilla = 2009, altura = 0.6)
+	const plantaQuinoa1 = new Quinoa(horasDeSolQueTolera = 12, anioObtencionSemilla = 2010, altura = 0.6)
+	const plantaQuinoa2 = new Quinoa(horasDeSolQueTolera = 9, anioObtencionSemilla = 2001, altura = 0.7)
+	const plantaSojaTrans = new SojaTransgenica(anioObtencionSemilla = 2009, altura = 0.6)
+	const plantaHierbabuena = new Hierbabuena(anioObtencionSemilla = 2004, altura = 1)
+	
+	test "Test de Menta"{
+		assert.that(plantaMenta1.daNuevasSemillas())
+		assert.equals(3,plantaMenta1.espacioQueOcupa())
+		assert.notThat(plantaMenta2.daNuevasSemillas())
+		assert.equals(0.9,plantaMenta2.espacioQueOcupa())
+	}
+	
+	test "Test de Soja"{
+		assert.equals(7,plantaSoja.horasDeSolQueTolera())
+		assert.notThat(plantaSoja.daNuevasSemillas())
+		assert.equals(0.3,plantaSoja.espacioQueOcupa())
+	}
+	
+	test "Test de Quinoa"{
+		assert.that(plantaQuinoa1.daNuevasSemillas())
+		assert.equals(0.5,plantaQuinoa1.espacioQueOcupa())
+		assert.that(plantaQuinoa2.daNuevasSemillas())
+		assert.equals(0.5,plantaQuinoa2.espacioQueOcupa())
+	}
+	
+	test "Soja Transgénica"{
+		assert.notThat(plantaSojaTrans.daNuevasSemillas())
+	}
+	
+	test "Test Hierbabuena"{
+		assert.equals(6,plantaHierbabuena.espacioQueOcupa())
+	}
+
+}

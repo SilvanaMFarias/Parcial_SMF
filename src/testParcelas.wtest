@@ -1,0 +1,8 @@
+import parcelas.*
+import plantas.*
+
+describe "Test de Parcelas"{
+	
+	
+	
+}
