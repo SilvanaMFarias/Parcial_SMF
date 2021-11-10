@@ -3,6 +3,30 @@ import plantas.*
 
 describe "Test de Parcelas"{
 	
+	const plantaSoja1 = new Soja(anioObtencionSemilla = 2009, altura = 1.5)
+	const plantaSoja2 = new Soja(anioObtencionSemilla = 2009, altura = 1.1)
+	const plantaSoja3 = new Soja(anioObtencionSemilla = 2009, altura = 1.2)
+	const plantaSoja4 = new Soja(anioObtencionSemilla = 2009, altura = 1.3)
+	const plantaSoja5 = new Soja(anioObtencionSemilla = 2009, altura = 1.2)
+	const plantitas1 = [plantaSoja1,plantaSoja2,plantaSoja3,plantaSoja4]
+	const parcela1 = new ParcelaEcologica(ancho = 20, largo = 1, horasDeSol = 8, plantas = plantitas1)
+
 	
+	test "Superficie"{
+		assert.equals(20,parcela1.superficie())
+	}
+	
+	test "Cantidad Maxima Plantas"{
+		assert.equals(4,parcela1.cantidadMaximaDePlantas())
+	}
+	
+	test "Tiene Complicaciones"{
+		assert.notThat(parcela1.tieneComplicaciones())
+	}
+	
+	test "Agregar una Planta"{
+		assert.throwsException({parcela1.agregarPlanta(plantaSoja5)})
+	}
+
 	
 }

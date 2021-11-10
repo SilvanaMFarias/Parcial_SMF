@@ -1,3 +1,6 @@
+import parcelas.*
+
+
 class Planta {
 	var property anioObtencionSemilla
 	var property altura
@@ -59,7 +62,7 @@ class Quinoa inherits Planta{
 	override method espacioQueOcupa()= 0.5
 	
 	override method esParcelaIdeal(unaParcela){
-		return unaParcela.plantas().all({p=>p.plantas()<=1.5})
+		return unaParcela.plantas().all({p=>p.altura()<=1.5})
 	}
 }
 

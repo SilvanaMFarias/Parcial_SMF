@@ -1,4 +1,5 @@
 import plantas.*
+import parcelas.*
 
 describe "Test de plantas"{
 	
@@ -39,3 +40,54 @@ describe "Test de plantas"{
 	}
 
 }
+
+describe "Test Parcelas ideales de plantas"{
+	
+	const plantaMenta = new Menta(anioObtencionSemilla = 2004, altura = 1)
+	const plantaHierbabuena = new Hierbabuena(anioObtencionSemilla = 2004, altura = 1)
+	const plantaSoja = new Soja(anioObtencionSemilla = 2009, altura = 1.6)
+	const plantaSojaTrans = new SojaTransgenica(anioObtencionSemilla = 2009, altura = 1.6)
+	const plantaQuinoa = new Quinoa(horasDeSolQueTolera = 12, anioObtencionSemilla = 2010, altura = 0.6)
+	const parcela1 = new ParcelaEcologica(ancho = 20, largo = 1, horasDeSol = 8, plantas = [plantaMenta])
+	const parcela2 = new ParcelaEcologica(ancho = 1, largo = 1, horasDeSol = 8, plantas = [plantaSoja])
+	const parcela3 = new ParcelaEcologica(ancho = 1, largo = 1, horasDeSol = 9, plantas = [])
+	
+	test "Menta y Hierbabuena"{
+		assert.that(plantaMenta.esParcelaIdeal(parcela1))
+		assert.notThat(plantaHierbabuena.esParcelaIdeal(parcela2))
+	}
+	
+	test "Quinoa"{
+		assert.that(plantaQuinoa.esParcelaIdeal(parcela1))
+		assert.notThat(plantaQuinoa.esParcelaIdeal(parcela2))
+	}
+	
+	test "Soja"{
+		assert.notThat(plantaSoja.esParcelaIdeal(parcela2))
+		assert.that(plantaSoja.esParcelaIdeal(parcela3))
+	}
+	
+	test "Soja Transgenica"{
+		assert.notThat(plantaSojaTrans.esParcelaIdeal(parcela1))
+		assert.that(plantaSojaTrans.esParcelaIdeal(parcela2))
+	}
+}
+	
+describe "Test Asociacion de Plantas"{
+	
+	const plantaMenta = new Menta(anioObtencionSemilla = 2004, altura = 1)
+	const plantaHierbabuena = new Hierbabuena(anioObtencionSemilla = 2004, altura = 1)
+	const plantaSoja = new Soja(anioObtencionSemilla = 2009, altura = 1.6)
+	const plantaSojaTrans = new SojaTransgenica(anioObtencionSemilla = 2009, altura = 1.6)
+	const plantaQuinoa = new Quinoa(horasDeSolQueTolera = 12, anioObtencionSemilla = 2010, altura = 0.6)
+	const parcela1 = new ParcelaEcologica(ancho = 20, largo = 1, horasDeSol = 8, plantas = [plantaMenta])
+	const parcela2 = new ParcelaEcologica(ancho = 1, largo = 1, horasDeSol = 8, plantas = [plantaSoja])
+	const parcela3 = new ParcelaIndustrial(ancho = 1, largo = 1, horasDeSol = 9, plantas = [])
+	
+	test "Se Asocia bien"{
+		assert.that(plantaSojaTrans.seAsociaBien(parcela2))
+		assert.notThat(plantaSoja.seAsociaBien(parcela3))
+		assert.that(plantaQuinoa.seAsociaBien(parcela3))
+	}
+}
+

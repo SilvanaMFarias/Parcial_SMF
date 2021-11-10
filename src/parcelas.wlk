@@ -8,9 +8,7 @@ class Parcela{
 	
 	method superficie() = ancho * largo
 	
-	method cantidadMaximaDePlantas() = if (ancho > largo) self.superficie()/5 else self.superficie()/3 + self.largo()
-
-	//CREO QUE VA UN TRUNCATE
+	method cantidadMaximaDePlantas() = if (ancho > largo) (self.superficie()/5).truncate(0) else (self.superficie()/3 + self.largo()).truncate(0)
 	
 	method tieneComplicaciones(){
 		return plantas.any({p=>p.horasDeSolQueTolera() < self.horasDeSol()})
