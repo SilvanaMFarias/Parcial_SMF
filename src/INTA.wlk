@@ -1,5 +1,12 @@
+import parcelas.*
+import plantas.*
+
 object inta {
 	const parcelas = []
+	
+	method agregarParcela(unaParcela){
+		parcelas.add(unaParcela)
+	}
 	
 	method promedioDePlantas(){
 		const cantPlantas = parcelas.sum({p=>p.plantas().size()})
